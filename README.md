@@ -10,6 +10,10 @@ Simple HTML and JavaScript files that uses two different versions of the large f
 
 You can switch between these two options by commenting and uncommenting the lines in the uploadFile() function in the HTML file. 
 
+### client_React18_TypeScript
+
+React 18 sample project that contains TypeScript version of the uploader class. See the project readme file for details and sample usage.
+
 ### api_NetCore8
 Sample backend api project that can used to test uploaders.
 
