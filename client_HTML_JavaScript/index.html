@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div style="width: 100%; height: 100vh; display: flex;justify-content: center;align-items: center;">
+        <div style="background-color: rgb(214, 204, 204);display: inline-block;">       
+            <input type='file' id='myFile'/>
+            <button onclick="uploadFile()">Upload File</button>
+        </div>
+    </div>
+
+    <script src="jquery-3.7.1.min.js"></script>
+    <script src="FileUploaderFunc.js"></script>
+    <script src="FileUploaderClass.js"></script>
+
+    <script type="text/javascript">
+
+        const uploadUrl = "https://localhost:7289/api/files/savepart";
+
+        var fileUploader;
+
+        function uploadFile() {
+            //uploadFileUsingFunc();
+            uploadFileUsingClass();//Uncomment this to use class version of the uploader
+        }
+
+        function uploadFileUsingFunc() {
+
+            const fileInput = document.getElementById("myFile");
+
+            fileUploader = new FileUploaderFunc(uploadUrl, fileInput.files[0], "735C38B5-E81C-44AB-BB66-A1B4322C5EF1");
+            
+            fileUploader.onProgress = (uploader, progress)=> {
+                console.log("File upload progress: "+progress);
+            }   
+
+            fileUploader.onCompleted = (uploader)=> {
+                console.log("Upload completed.");
+            }                     
+
+            fileUploader.onFailed = (uploader, error)=> {
+                console.log("Upload failed. Error: "+ error);
+            }
+
+            fileUploader.upload();
+        }
+
+        function uploadFileUsingClass() {
+
+            const fileInput = document.getElementById("myFile");
+
+            fileUploader = new FileUploaderClass(uploadUrl, fileInput.files[0], "735C38B5-E81C-44AB-BB66-A1B4322C5EF1");
+
+            fileUploader.onProgress = (uploader, progress)=> {
+                console.log("File upload progress: "+progress);
+            }   
+
+            fileUploader.onCompleted = (uploader)=> {
+                console.log("Upload completed.");
+            }                     
+
+            fileUploader.onFailed = (uploader, error)=> {
+                console.log("Upload failed. Error: "+ error);
+            }
+
+            fileUploader.upload();
+        }
+
+    </script>    
+</body>
+</html>
