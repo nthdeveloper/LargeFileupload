@@ -234,3 +234,6 @@ res_2K/
 res_4K/
 temp_files/
 thumbnails/
+
+#Nodejs
+node_modules/
